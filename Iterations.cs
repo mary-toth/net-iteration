@@ -23,8 +23,6 @@ namespace DotnetIteration
            you have not yet completed that method. Once you finish a method and have
            it correct, the test will tell you how the next method is working.
         */
-
-
         //  
         // 1) Complete the method named `yelling` that takes a list of
         //    words as an argument and returns a new list with all
@@ -32,10 +30,10 @@ namespace DotnetIteration
         //
         public static IEnumerable<string> Yelling(List<string> words)
         {
-            throw new System.NotImplementedException();
+            var newUpperCaseWords = words.Select(word => word.ToUpper());
+            return newUpperCaseWords;
+
         }
-
-
         // 
         // 2) Complete the method named `Double` that takes a list of
         //    numbers as an argument and returns a new list with all
@@ -43,10 +41,12 @@ namespace DotnetIteration
         // 
         public static IEnumerable<int> Double(List<int> numbers)
         {
-            throw new System.NotImplementedException();
+            Func<int, int> MultiplyBy2 = score => score * 2;
+
+            var newNumbers = numbers.Select(MultiplyBy2);
+
+            return newNumbers;
         }
-
-
         // 
         // 3) Complete the method `StringyIndexes` that takes a list of
         //    strings as an argument and returns a new list with each
@@ -55,36 +55,34 @@ namespace DotnetIteration
         // 
         public static IEnumerable<string> StringyIndexes(List<string> words)
         {
-            throw new System.NotImplementedException();
+            var newList = words.Select((word, index) => $"{word} is at index {index}");
+            return newList;
         }
-
-
         // 
         // 4) Complete the method OnlyTheEvenSurvive that accepts a list of
         //    numbers and returns only the elements that are even.
         // 
         public static IEnumerable<int> OnlyTheEvenSurvive(List<int> numbers)
         {
-            throw new System.NotImplementedException();
+            var evenNumbersOnly = numbers.Where(number => number % 2 == 0);
+            return evenNumbersOnly;
         }
-
-
         // 
         // 5) Complete the method OnlyTheEvenIndexedSurvive that accepts a
         //    list of numbers and returns only the elements at indexes that
         //    are even.
-        // 
         public static IEnumerable<int> OnlyTheEvenIndexedSurvive(List<int> numbers)
         {
-            throw new System.NotImplementedException();
-        }
+            var evenNumbers = numbers.Where((number, index) => index % 2 == 0);
+            return evenNumbers;
 
+        }
 
         // 
         // 6) Complete the method BestMoviesOfTheYear that accepts a list of
         //    movie objects AND a year and returns the names of movies that are
         //    from that year AND have a score more than 90.
-        // 
+
         // A movie object looks like this:
         // 
         // new Movie() {
@@ -95,17 +93,19 @@ namespace DotnetIteration
         // 
         public static IEnumerable<string> BestMovieOfTheYear(List<Movie> movies, int yearToMatch)
         {
-            throw new System.NotImplementedException();
+
+            var coolMovies = movies.Where(movie => movie.Year == yearToMatch && movie.Score >= 90).Select(movies => movies.Name);
+
+            return coolMovies;
         }
-
-
         // 
         // 7) Complete the method EveryoneIsOdd that accepts a list of
         //    numbers and returns true if every element of the list is odd.
         // 
         public static bool EveryoneIsOdd(List<int> numbers)
         {
-            throw new System.NotImplementedException();
+            var areThereOddNumbers = numbers.All(number => number % 2 != 0);
+            return areThereOddNumbers;
         }
 
 
@@ -116,9 +116,12 @@ namespace DotnetIteration
         // 
         public static string FindTheNeedle(List<string> sentences)
         {
-            throw new System.NotImplementedException();
-        }
 
+            var containsNeedle = sentences.First(sentence => sentence.Contains("needle"));
+
+            return containsNeedle;
+
+        }
 
         // 
         // 9) Complete the method FindTheNeedleIndex that accepts a list of
@@ -127,9 +130,10 @@ namespace DotnetIteration
         // 
         public static int FindTheNeedleIndex(List<string> sentences)
         {
-            throw new System.NotImplementedException();
-        }
+            var containsNeedle = sentences.FindIndex(index => index.Contains("needle"));
 
+            return containsNeedle;
+        }
 
         // 
         // 10) Complete the method SomeoneToLove that accepts a list of
@@ -138,7 +142,9 @@ namespace DotnetIteration
         // 
         public static bool SomeoneToLove(List<string> words)
         {
-            throw new System.NotImplementedException();
+            var hasFourChar = words.Any(word => word.Length == 4);
+            return hasFourChar;
+
         }
     }
 }
